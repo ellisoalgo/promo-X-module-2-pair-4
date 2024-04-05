@@ -50,3 +50,23 @@ const catThree = `<li class="card">
 </li>`;
 
 catList.innerHTML = catOne + catTwo + catThree;
+
+const btnAdd = document.querySelector ('.js-btn-add') ;
+
+const newForm = document.querySelector ('.js-section-form') ;
+
+btnAdd.addEventListener ('click', (event)=>{
+    console.log ('Hello');
+    newForm.classList.remove('collapsed');
+}) ;
+
+const btnCancel = document.querySelector('.js-btn-cancel') ;
+
+const clearInput = document.querySelector('.js-input') ;
+
+btnCancel.addEventListener ('click' , (event)=>{
+    console.log ('Canceled');
+    newForm.classList.add('collapsed');
+    clearInput.reset ();
+}) ;
+

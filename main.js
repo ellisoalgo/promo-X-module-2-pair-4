@@ -70,3 +70,21 @@ btnCancel.addEventListener ('click' , (event)=>{
     clearInput.reset ();
 }) ;
 
+const input_search_desc = document.querySelector('.js_in_search_desc');
+const btnSearch = document.querySelector('.js_btn_buscar');
+
+btnSearch.addEventListener('click', (ev)=>{
+    ev.preventDefault();
+    const descrSearchText = input_search_desc.value;
+    catList.innerHTML = '';
+
+    if(catOne.includes(descrSearchText) ) {
+        catList.innerHTML = catOne;
+    }
+    if(catTwo.includes(descrSearchText) ) {
+        catList.innerHTML += catTwo;
+    }
+    if(catThree.includes(descrSearchText) ) {
+        catList.innerHTML += catThree;
+    }
+});

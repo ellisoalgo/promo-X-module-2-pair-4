@@ -1,6 +1,6 @@
 "use strict";
 
-console.log ("hola");
+console.log("hola");
 
 const catList = document.querySelector(".js-list");
 
@@ -81,40 +81,62 @@ const catThree = `<li class="card">
 
 catList.innerHTML = catOne + catTwo + catThree;
 
-const btnAdd = document.querySelector ('.js-btn-add') ;
+const btnAdd = document.querySelector('.js-btn-add');
 
-const newForm = document.querySelector ('.js-section-form') ;
+const newForm = document.querySelector('.js-section-form');
 
-btnAdd.addEventListener ('click', (event)=>{
-    console.log ('Hello');
+btnAdd.addEventListener('click', handleClickNewForm);
+
+function showNewCatForm() {
     newForm.classList.remove('collapsed');
-}) ;
-
-const btnCancel = document.querySelector('.js-btn-cancel') ;
-
-const clearInput = document.querySelector('.js-input') ;
-
-btnCancel.addEventListener ('click' , (event)=>{
-    console.log ('Canceled');
+}
+function hideNewCatForm() {
     newForm.classList.add('collapsed');
-    clearInput.reset ();
-}) ;
+}
+
+function handleClickNewForm(event) {
+    event.preventDefault();
+    if (newForm.classList.contains('collapsed')) {
+        showNewCatForm();
+    }
+    else {
+        hideNewCatForm();
+    }
+}
+
+const btnCancel = document.querySelector('.js-btn-cancel');
+
+const clearInput = document.querySelector('.js-input');
+
+btnCancel.addEventListener('click', (event) => {
+    console.log('Canceled');
+    newForm.classList.add('collapsed');
+    clearInput.reset();
+});
+
+const btnNewCat = document.querySelector('.js-btn-new');
+
+btnNewCat.addEventListener('click', addNewKitten);
+
+function addNewKitten(event) {
+    
+  }
 
 const input_search_desc = document.querySelector('.js_in_search_desc');
 const btnSearch = document.querySelector('.js_btn_buscar');
 
-btnSearch.addEventListener('click', (ev)=>{
+btnSearch.addEventListener('click', (ev) => {
     ev.preventDefault();
     const descrSearchText = input_search_desc.value;
     catList.innerHTML = '';
 
-    if(catOne.includes(descrSearchText) ) {
+    if (catOne.includes(descrSearchText)) {
         catList.innerHTML = catOne;
     }
-    if(catTwo.includes(descrSearchText) ) {
+    if (catTwo.includes(descrSearchText)) {
         catList.innerHTML += catTwo;
     }
-    if(catThree.includes(descrSearchText) ) {
+    if (catThree.includes(descrSearchText)) {
         catList.innerHTML += catThree;
     }
 });

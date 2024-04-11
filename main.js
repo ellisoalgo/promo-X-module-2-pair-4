@@ -114,13 +114,62 @@ btnCancel.addEventListener('click', (event) => {
     clearInput.reset();
 });
 
-const btnNewCat = document.querySelector('.js-btn-new');
+/* Dentro funcion manejadora - añadir nuevo gato
+    0. preventDefault
+    1. Variables: input foto, nombre, raza, descripción
+    2. Recoja el valor de los input
+            
+    3. innerHTML en una nueva <li> en catList
+    `<li class="card">
+        <article>
+        <img
+            class="card_img"
+            src="${photo}"
+            alt="gatito"/>
+        <h3 class="card_title">${name}</h3>
+        <h4 class="card_race">${race}</h4>
+        <p class="card_description">${description}</p>
+        </article>
+    </li>`
+*/
 
-btnNewCat.addEventListener('click', addNewKitten);
+const btnNewCat = document.querySelector('.js-btn-new');
+const inputImg = document.querySelector('.js-input-img');
+const inputName = document.querySelector('.js-input-name');
+const inputRace = document.querySelector('.js-input-race');
+const inputDesc = document.querySelector('.js-input-desc');
+
+function renderKitten(url, name, race, desc) {
+    `<li class="card">
+        <article>
+            <img
+                class="card_img"
+                src="${url}"
+                alt="gatito"/>
+            <h3 class="card_title">${name}</h3>
+            <h4 class="card_race">${race}</h4>
+            <p class="card_description">${desc}</p>
+        </article>
+        </li>`;
+}
 
 function addNewKitten(event) {
+    event.preventDefault();
+    console.log("funciona?");
+    const valueImg = inputImg.value;
+    const valueName = inputName.value;
+    const valueRace = inputRace.value;
+    const valueDesc = inputDesc.value;
+
+    catList.innerHTML += renderKitten(valueImg, valueName, valueRace, valueDesc); //tendremos que renderizar cat1 cat2 cat3
     
-  }
+    newForm.classList.add('collapsed');
+    newForm.reset(); //????
+}
+
+
+
+btnNewCat.addEventListener('click', addNewKitten);
 
 const input_search_desc = document.querySelector('.js_in_search_desc');
 const btnSearch = document.querySelector('.js_btn_buscar');

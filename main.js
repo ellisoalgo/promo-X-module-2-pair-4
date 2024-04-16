@@ -68,41 +68,9 @@ if (catData_3.race === "") {
 } else {
     catData_3.raceMsg = catData_3.race;
 };
+//array
+const catDataList = [catData_1, catData_2, catData_3];
 
-const catOne = `<li class="card">
-                    <article>
-                    <img
-                        class="card_img"
-                        src="${catData_1.img}"
-                        alt="gatito"/>
-                    <h3 class="card_title">${catData_1.name.toUpperCase()}</h3>
-                    <h4 class="card_race">${catData_1.raceMsg}</h4>
-                    <p class="card_description">${catData_1.desc}</p>
-                    </article>
-                </li>`;
-
-const catTwo = `<li class="card">
-                    <article>
-                        <img class="card_img" src="${catData_2.img}" alt="sphynx-cat"/>
-                        <h3 class="card_title">${catData_2.name.toUpperCase()}</h3>
-                        <h4 class="card_race">${catData_2.raceMsg}</h4>
-                        <p class="card_description">${catData_2.desc}</p>
-                    </article> 
-                </li>`;
-
-const catThree = `<li class="card">
-                    <article>
-                        <img
-                        class="card_img"
-                        src="${catData_3.img}"
-                        alt="maine-coon-cat"/>
-                        <h3 class="card_title">${catData_3.name.toUpperCase()}</h3>
-                        <h4 class="card_race">${catData_3.raceMsg}</h4>
-                        <p class="card_description">${catData_3.desc}</p>
-                    </article>
-                </li>`;
-
-catList.innerHTML = catOne + catTwo + catThree;
 
 const btnAdd = document.querySelector('.js-btn-add');
 
@@ -184,7 +152,10 @@ function renderKitten(catData) {
          </li>`;
     return cat;
 }
+//pintamos la función renderKitten, creando las tarjetas y las metemos en la lista
+catList.innerHTML = renderKitten (catDataList[0]) + renderKitten (catDataList[1]) + renderKitten (catDataList[2]);
 
+//Añadir nuevo gato, lo que hace es coger los input y los mete en un nevo objeto (newCatDataObject)
 function addNewKitten(event) {
     event.preventDefault();
     console.log("funciona!");
@@ -199,15 +170,17 @@ function addNewKitten(event) {
         race: valueRace,
         desc: valueDesc,
     }
-
+//Meter la nueva info de NewCat la está metiendo catDataList
     catDataList.push(newCatDataObject);
+//Vacíams la ul para después meter todas las tarjetas que hay en catDataList
+    catList.innerHTML = ``;
+    //a la const cat añade al catDataList nuevos gatos y los pinta en una tarjeta nueva.
+    for (const cat of catDataList){
+        catList.innerHTML += renderKitten (cat)
+    }
 
-    renderKitten(catDataList); //aqui faltan arrays para que funcione
-
-    //catList.innerHTML += renderKitten(valueImg, valueName, valueRace, valueDesc); //tendremos que renderizar cat1 cat2 cat3
-    
     newForm.classList.add('collapsed');
-    //newForm.reset(); //????
+    //newForm.reset(); //????*/
 }
 
 btnNewCat.addEventListener('click', addNewKitten);
